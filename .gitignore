@@ -1,0 +1,37 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+.DS_Store
+*.pyc
+*.egg-info
+*.swp
+*.log
+tags
+node_modules
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+helpdesk/docs/current
+helpdesk/public/desk
+helpdesk/public/node_modules
+helpdesk/www/helpdesk/index.html
+desk/components.d.ts
