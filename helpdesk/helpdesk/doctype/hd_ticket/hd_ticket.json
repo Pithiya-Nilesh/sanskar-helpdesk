@@ -13,10 +13,13 @@
   "raised_by",
   "status",
   "priority",
+  "assign_employee",
   "cb00",
   "ticket_type",
   "agent_group",
   "ticket_split_from",
+  "project",
+  "department",
   "sb_details",
   "description",
   "template",
@@ -405,12 +408,31 @@
    "fieldname": "meta_tab",
    "fieldtype": "Tab Break",
    "label": "Meta"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Select",
+   "label": "Department",
+   "options": "HR\nTechnical\nSales\nFunctional"
+  },
+  {
+   "fieldname": "assign_employee",
+   "fieldtype": "Link",
+   "label": "Assign Employee",
+   "options": "HD Sub Team",
+   "read_only": 1
   }
  ],
  "icon": "fa fa-issue",
  "idx": 61,
  "links": [],
- "modified": "2023-11-23 13:44:59.105648",
+ "modified": "2024-05-09 18:02:50.537035",
  "modified_by": "Administrator",
  "module": "Helpdesk",
  "name": "HD Ticket",

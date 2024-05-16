@@ -8,11 +8,80 @@ from helpdesk.consts import DEFAULT_TICKET_TEMPLATE
 from helpdesk.helpdesk.doctype.hd_ticket_template.api import get_one as get_template
 from helpdesk.utils import check_permissions, get_customer, is_agent
 
+@frappe.whitelist()
+def get_projects():	
+	project_list = []
+	sql = f""" select parent from `tabPortal User` where user = '{frappe.session.user}' """
+	customer = frappe.db.sql(sql, as_list=True)
+	if customer:
+		projects = frappe.db.get_all("Project", filters={"customer": f"{customer[0][0]}"}, fields=["name"])
+		for project in projects:
+			project_list.append(project['name'])
+
+	sql1 = f""" select parent from `tabProject User` where user = '{frappe.session.user}' """
+	projects = frappe.db.sql(sql1, as_list=True)
+	if projects:
+		for project in projects:
+			project_list.append(project[0])
+
+	return project_list
+
+@frappe.whitelist()
+def get_projects_for_filter():	
+	project_list = [{"label": "Select Project"}]
+	sql = f""" select parent from `tabPortal User` where user = '{frappe.session.user}' """
+	customer = frappe.db.sql(sql, as_list=True)
+	if customer:
+		projects = frappe.db.get_all("Project", filters={"customer": f"{customer[0][0]}"}, fields=["name"])
+		for project in projects:
+			project_list.append({"label": project['name']})
+
+	sql1 = f""" select parent from `tabProject User` where user = '{frappe.session.user}' """
+	projects = frappe.db.sql(sql1, as_list=True)
+	if projects:
+		for project in projects:
+			project_list.append({"label": project[0]})
+	
+	return project_list
+
+
+@frappe.whitelist()
+def check_is_employee():
+	user = frappe.session.user
+	employee = frappe.db.count("Employee", filters={"user_id": user})
+	return True if employee >= 1 else False 
+
+
+@frappe.whitelist()
+def get_agents():
+	user = frappe.session.user
+	agent = frappe.db.get_list("HD Sub Team", filters={"parent_member": user}, fields=["member"], pluck='member')
+	agent.append(user)
+	data = frappe.db.get_list("HD Agent", filters={"name": ["in", agent]}, fields=["name", "is_active", "user.full_name", "user.user_image", "user.email", "user.username"])
+	return data
+
+@frappe.whitelist()
+def get_agents_in_ticket():
+	user = frappe.session.user
+	agent = frappe.db.get_list("HD Sub Team", filters={"parent_member": user}, fields=["member"], pluck='member')
+	agent.append(user)
+	data = frappe.db.get_list("HD Agent", filters={"name": ["in", agent]}, fields=["name", "agent_name", "is_active", "user", "user.user_image"])
+	return data
+
 
 @frappe.whitelist()
 def new(doc, attachments=[]):
 	doc["doctype"] = "HD Ticket"
 	doc["via_customer_portal"] = bool(frappe.session.user)
+	default_team = frappe.db.get_single_value("HD Settings", "default_team")
+	if "department" in doc:
+		if doc['department'] != "":
+			doc["agent_group"] = (doc['department'].lower())
+		elif default_team:
+			doc["agent_group"] = default_team
+	else:
+		frappe.throw("No default team found")
+
 	d = frappe.get_doc(doc).insert()
 	d.create_communication_via_contact(d.description, attachments)
 	return d

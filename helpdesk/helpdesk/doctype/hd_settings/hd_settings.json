@@ -22,6 +22,7 @@
   "column_break_dxlq",
   "assignment_rules_section",
   "base_support_rotation",
+  "default_team",
   "knowledge_base_section",
   "suggest_articles_in_new_ticket_page",
   "prefer_knowledge_base",
@@ -235,11 +236,17 @@
   {
    "fieldname": "column_break_nvbf",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "default_team",
+   "fieldtype": "Link",
+   "label": "Default Team",
+   "options": "HD Team"
   }
  ],
  "issingle": 1,
  "links": [],
- "modified": "2023-08-23 17:59:49.761375",
+ "modified": "2024-05-04 13:07:01.165944",
  "modified_by": "Administrator",
  "module": "Helpdesk",
  "name": "HD Settings",

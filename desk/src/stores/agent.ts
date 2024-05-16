@@ -13,7 +13,8 @@ type Agent = {
 export const useAgentStore = defineStore("agent", () => {
   const d__ = createListResource({
     doctype: "HD Agent",
-    fields: ["name", "agent_name", "is_active", "user", "user.user_image"],
+    url: "helpdesk.helpdesk.doctype.hd_ticket.api.get_agents_in_ticket",
+    // fields: ["name", "agent_name", "is_active", "user", "user.user_image"],
     auto: true,
     pageLength: 99999,
   });

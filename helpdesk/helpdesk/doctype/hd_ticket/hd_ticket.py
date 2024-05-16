@@ -241,7 +241,10 @@ class HDTicket(Document):
 		# Skip if `Customer` is already set
 		if self.customer:
 			return
-		customer = get_customer(self.contact)
+		if self.contact:
+			customer = get_customer(self.contact)
+		else:
+			return
 		
 		# let agent assign the customer when one contact has more than one customer
 		if len(customer) == 1:

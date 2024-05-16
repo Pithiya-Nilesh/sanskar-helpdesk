@@ -1,0 +1,93 @@
+[
+ {
+  "assignment_rule": "technical - Support Rotation",
+  "docstatus": 0,
+  "doctype": "HD Team",
+  "ignore_restrictions": 0,
+  "modified": "2024-05-02 11:04:25.556608",
+  "name": "technical",
+  "team_name": "technical",
+  "users": [
+   {
+    "parent": "technical",
+    "parentfield": "users",
+    "parenttype": "HD Team",
+    "user": "nilesh@sanskartechnolab.com"
+   }
+  ]
+ },
+ {
+  "assignment_rule": "sales - Support Rotation",
+  "docstatus": 0,
+  "doctype": "HD Team",
+  "ignore_restrictions": 0,
+  "modified": "2024-05-09 13:09:40.448283",
+  "name": "sales",
+  "team_name": "sales",
+  "users": [
+   {
+    "parent": "sales",
+    "parentfield": "users",
+    "parenttype": "HD Team",
+    "user": "kamal@sanskartechnolab.com"
+   }
+  ]
+ },
+ {
+  "assignment_rule": "master team - Support Rotation",
+  "docstatus": 0,
+  "doctype": "HD Team",
+  "ignore_restrictions": 0,
+  "modified": "2024-05-09 13:34:09.021228",
+  "name": "master team",
+  "team_name": "master team",
+  "users": [
+   {
+    "parent": "master team",
+    "parentfield": "users",
+    "parenttype": "HD Team",
+    "user": "kamal@sanskartechnolab.com"
+   },
+   {
+    "parent": "master team",
+    "parentfield": "users",
+    "parenttype": "HD Team",
+    "user": "ayush@sanskartechnolab.com"
+   }
+  ]
+ },
+ {
+  "assignment_rule": "functional - Support Rotation",
+  "docstatus": 0,
+  "doctype": "HD Team",
+  "ignore_restrictions": 0,
+  "modified": "2024-05-09 13:09:55.857604",
+  "name": "functional",
+  "team_name": "functional",
+  "users": [
+   {
+    "parent": "functional",
+    "parentfield": "users",
+    "parenttype": "HD Team",
+    "user": "sahil@sanskartechnolab.com"
+   }
+  ]
+ },
+ {
+  "assignment_rule": "hr - Support Rotation",
+  "docstatus": 0,
+  "doctype": "HD Team",
+  "ignore_restrictions": 0,
+  "modified": "2024-05-09 13:10:10.231101",
+  "name": "hr",
+  "team_name": "hr",
+  "users": [
+   {
+    "parent": "hr",
+    "parentfield": "users",
+    "parenttype": "HD Team",
+    "user": "hitesh@sanskartechnolab.com"
+   }
+  ]
+ }
+]

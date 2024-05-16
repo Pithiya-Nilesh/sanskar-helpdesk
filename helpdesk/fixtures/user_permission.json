@@ -1,0 +1,54 @@
+[
+ {
+  "allow": "HD Team",
+  "applicable_for": null,
+  "apply_to_all_doctypes": 1,
+  "docstatus": 0,
+  "doctype": "User Permission",
+  "for_value": "technical",
+  "hide_descendants": 0,
+  "is_default": 0,
+  "modified": "2024-05-02 11:49:50.639284",
+  "name": "77a687eeb4",
+  "user": "nilesh@sanskartechnolab.com"
+ },
+ {
+  "allow": "HD Team",
+  "applicable_for": "",
+  "apply_to_all_doctypes": 1,
+  "docstatus": 0,
+  "doctype": "User Permission",
+  "for_value": "functional",
+  "hide_descendants": 0,
+  "is_default": 0,
+  "modified": "2024-05-09 13:10:51.815751",
+  "name": "43cf83f7f3",
+  "user": "sahil@sanskartechnolab.com"
+ },
+ {
+  "allow": "HD Team",
+  "applicable_for": "",
+  "apply_to_all_doctypes": 1,
+  "docstatus": 0,
+  "doctype": "User Permission",
+  "for_value": "hr",
+  "hide_descendants": 0,
+  "is_default": 0,
+  "modified": "2024-05-09 13:11:07.993394",
+  "name": "662022a8bf",
+  "user": "hitesh@sanskartechnolab.com"
+ },
+ {
+  "allow": "HD Sub Team",
+  "applicable_for": null,
+  "apply_to_all_doctypes": 1,
+  "docstatus": 0,
+  "doctype": "User Permission",
+  "for_value": "d3a069f2a4",
+  "hide_descendants": 0,
+  "is_default": 0,
+  "modified": "2024-05-09 17:38:43.494418",
+  "name": "7c7330a6e2",
+  "user": "bhavik@sanskartechnolab.com"
+ }
+]

@@ -1,0 +1,89 @@
+[
+ {
+  "agent_name": "Nilesh Pithiya",
+  "docstatus": 0,
+  "doctype": "HD Agent",
+  "groups": [
+   {
+    "parent": "nilesh@sanskartechnolab.com",
+    "parentfield": "groups",
+    "parenttype": "HD Agent",
+    "team": "technical"
+   }
+  ],
+  "is_active": 1,
+  "modified": "2024-05-02 11:06:57.273397",
+  "name": "nilesh@sanskartechnolab.com",
+  "user": "nilesh@sanskartechnolab.com",
+  "user_image": null
+ },
+ {
+  "agent_name": "Sahil Patel",
+  "docstatus": 0,
+  "doctype": "HD Agent",
+  "groups": [
+   {
+    "parent": "sahil@sanskartechnolab.com",
+    "parentfield": "groups",
+    "parenttype": "HD Agent",
+    "team": "functional"
+   }
+  ],
+  "is_active": 1,
+  "modified": "2024-05-09 13:14:08.149465",
+  "name": "sahil@sanskartechnolab.com",
+  "user": "sahil@sanskartechnolab.com",
+  "user_image": null
+ },
+ {
+  "agent_name": "Kamal Patel",
+  "docstatus": 0,
+  "doctype": "HD Agent",
+  "groups": [],
+  "is_active": 1,
+  "modified": "2024-05-09 13:14:40.282675",
+  "name": "kamal@sanskartechnolab.com",
+  "user": "kamal@sanskartechnolab.com",
+  "user_image": null
+ },
+ {
+  "agent_name": "Hitesh Kuchadiya",
+  "docstatus": 0,
+  "doctype": "HD Agent",
+  "groups": [],
+  "is_active": 1,
+  "modified": "2024-05-09 13:14:30.484122",
+  "name": "hitesh@sanskartechnolab.com",
+  "user": "hitesh@sanskartechnolab.com",
+  "user_image": null
+ },
+ {
+  "agent_name": "Ayush Vanparia",
+  "docstatus": 0,
+  "doctype": "HD Agent",
+  "groups": [],
+  "is_active": 1,
+  "modified": "2024-05-09 13:34:24.542549",
+  "name": "ayush@sanskartechnolab.com",
+  "user": "ayush@sanskartechnolab.com",
+  "user_image": null
+ },
+ {
+  "agent_name": "Bhavik Vachhani",
+  "docstatus": 0,
+  "doctype": "HD Agent",
+  "groups": [
+   {
+    "parent": "bhavik@sanskartechnolab.com",
+    "parentfield": "groups",
+    "parenttype": "HD Agent",
+    "team": "technical"
+   }
+  ],
+  "is_active": 1,
+  "modified": "2024-05-09 17:26:20.361566",
+  "name": "bhavik@sanskartechnolab.com",
+  "user": "bhavik@sanskartechnolab.com",
+  "user_image": null
+ }
+]

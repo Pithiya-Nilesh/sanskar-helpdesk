@@ -15,6 +15,25 @@ scheduler_events = {
 	"all": ["helpdesk.search.build_index_if_not_exists"],
 }
 
+fixtures = [
+    {
+        "dt": "User Permission",
+        "filters": [["allow", "in", ("HD Sub Team", "HD Team")]]
+    },
+    {
+        "dt": "HD Sub Team"
+    },
+    {
+        "dt": "HD Agent"
+    },
+    {
+        "dt": "HD Team"
+    },
+    {
+        "dt": "HD Settings"
+    }
+]
+
 
 website_route_rules = [
 	{
@@ -29,6 +48,9 @@ doc_events = {
 	},
 	"Assignment Rule": {
 		"on_trash": "helpdesk.overrides.on_assignment_rule_trash",
+	},
+    "ToDo": {
+		"on_update": "helpdesk.helpdesk.hooks.hd_ticket.set_employee_based_on_assignment",
 	},
 }
 

@@ -4,7 +4,43 @@
     <div v-if="template.data?.about" class="mx-5 my-3">
       <div class="prose-f" v-html="sanitize(template.data.about)" />
     </div>
-    <div class="grid grid-cols-1 gap-4 px-5 sm:grid-cols-3">
+    <div class="mx-5 m-5">
+      <FormControl
+        type="select"
+        :options="projectList"
+        size="sm"
+        variant="subtle"
+        placeholder=""
+        :disabled="false"
+        label="Select Project"
+        v-model="project"
+    />
+    </div>
+
+    <div class="mx-5 mb-5" v-if="employee">
+      <FormControl
+        type="select"
+        :options="departmentList"
+        size="sm"
+        variant="subtle"
+        placeholder=""
+        :disabled="false"
+        label="Select Department"
+        v-model="department"
+    />
+      
+    </div>
+
+    <div class="mx-5 mb-5">
+      <FormControl
+        v-model="subject"
+        type="text"
+        label="Subject"
+        placeholder="A short description"
+      />
+    </div>
+    
+    <div class="mx-5">
       <UniInput
         v-for="field in visibleFields"
         :key="field.fieldname"
@@ -12,14 +48,8 @@
         :value="templateFields[field.fieldname]"
         @change="templateFields[field.fieldname] = $event.value"
       />
-    </div>
-    <div class="m-5">
-      <FormControl
-        v-model="subject"
-        type="text"
-        label="Subject"
-        placeholder="A short description"
-      />
+      
+
     </div>
     <TicketNewArticles :search="subject" class="mx-5 mb-5" />
     <span class="mx-5 mb-5">
@@ -36,7 +66,7 @@
             theme="gray"
             variant="solid"
             :disabled="
-              $refs.editor.editor.isEmpty || ticket.loading || !subject
+              $refs.editor.editor.isEmpty || ticket.loading || !subject || employee && !department || !employee && !project
             "
             @click="() => ticket.submit()"
           />
@@ -47,9 +77,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, reactive } from "vue";
+import { ref, computed, reactive, watch, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { createResource, usePageMeta, Button, FormControl } from "frappe-ui";
+import { createResource, usePageMeta, Button, FormControl, createListResource } from "frappe-ui";
 import sanitizeHtml from "sanitize-html";
 import { isEmpty } from "lodash";
 import { useError } from "@/composables/error";
@@ -57,6 +87,7 @@ import { UniInput } from "@/components";
 import TicketBreadcrumbs from "./TicketBreadcrumbs.vue";
 import TicketNewArticles from "./TicketNewArticles.vue";
 import TicketTextEditor from "./TicketTextEditor.vue";
+
 
 interface P {
   templateId?: string;
@@ -70,8 +101,38 @@ const route = useRoute();
 const router = useRouter();
 const subject = ref("");
 const description = ref("");
+const project = ref("");
 const attachments = ref([]);
 const templateFields = reactive({});
+
+const projectList = ref([]); // Define project_list
+const employee = ref("");
+const department = ref("");
+const departmentList = ref(["HR", "Technical", "Sales", "Functional"])
+
+createListResource({
+  doctype: 'Project',
+  url: "helpdesk.helpdesk.doctype.hd_ticket.api.get_projects",
+  auto: true,
+  onError(error) {
+    console.log("Error", error);
+  },
+  onSuccess(data) {
+    projectList.value = data; // Update projectList with the fetched data
+  },
+});
+
+createListResource({
+  doctype: 'Employee',
+  url: "helpdesk.helpdesk.doctype.hd_ticket.api.check_is_employee",
+  auto: true,
+  onError(error) {
+    console.log("Error", error);
+  },
+  onSuccess(data) {
+    employee.value = data;
+  },
+});
 
 const template = createResource({
   url: "helpdesk.helpdesk.doctype.hd_ticket_template.api.get_one",
@@ -86,6 +147,7 @@ const visibleFields = computed(() =>
     (f) => route.meta.agent || !f.hide_from_customer
   )
 );
+
 const ticket = createResource({
   url: "helpdesk.helpdesk.doctype.hd_ticket.api.new",
   debounce: 300,
@@ -93,14 +155,24 @@ const ticket = createResource({
     doc: {
       description: description.value,
       subject: subject.value,
+      project: project.value,
+      department: department.value,
       template: props.templateId,
       ...templateFields,
     },
     attachments: attachments.value,
   }),
+
   validate: (params) => {
     const fields = visibleFields.value?.filter((f) => f.required) || [];
-    const toVerify = [...fields, "subject", "description"];
+    const toVerify = []
+    if (employee.value){
+      toVerify.push(...fields, "subject", "description", "department")
+    }
+    else{
+      toVerify.push(...fields, "subject", "description", "project")
+    }
+    
     for (const field of toVerify) {
       if (isEmpty(params.doc[field.fieldname || field])) {
         return `${field.label || field} is required`;
@@ -128,3 +200,4 @@ usePageMeta(() => ({
   title: "New Ticket",
 }));
 </script>
+

@@ -49,7 +49,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
-import { usePageMeta, Avatar, Badge } from "frappe-ui";
+import { usePageMeta, Avatar, Badge, createListResource } from "frappe-ui";
 import { AGENT_PORTAL_TICKET_LIST } from "@/router";
 import { createListManager } from "@/composables/listManager";
 import { useFilter } from "@/composables/filter";
@@ -77,16 +77,28 @@ const columns = [
   },
 ];
 
-const agents = createListManager({
+// const agents = createListManager({
+//   doctype: "HD Agent",
+//   fields: [
+//     "name",
+//     "is_active",
+//     "user.full_name",
+//     "user.user_image",
+//     "user.email",
+//     "user.username",
+//   ],
+//   auto: true,
+//   transform: (data) => {
+//     for (const d of data) {
+//       d.onClick = () => toTickets(d.name);
+//     }
+//     return data;
+//   },
+// });
+
+const agents = createListResource({
   doctype: "HD Agent",
-  fields: [
-    "name",
-    "is_active",
-    "user.full_name",
-    "user.user_image",
-    "user.email",
-    "user.username",
-  ],
+  url: "helpdesk.helpdesk.doctype.hd_ticket.api.get_agents",
   auto: true,
   transform: (data) => {
     for (const d of data) {
